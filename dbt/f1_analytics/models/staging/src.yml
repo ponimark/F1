@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: f1_data
+    tables:
+      - name: sessions
+      - name: drivers
+      - name: weather
+      - name: laps
+      - name: car_data
+      - name: intervals
+      - name: pit
+      - name: position
+      - name: meetings
+      - name: stints

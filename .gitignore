@@ -1,0 +1,26 @@
+# Ignore Python cache and venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+
+# Ignore IDE configs
+.idea/
+.vscode/
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
+
+# Ignore Airflow logs
+logs/
+airflow_logs/
+
+# Ignore dbt build output
+dbt/f1_analytics/target/
+dbt/f1_analytics/dbt_modules/
+
+# Ignore log files
+*.log

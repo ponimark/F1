@@ -1,0 +1,40 @@
+services:
+  airflow-webserver:
+    image: apache/airflow:2.8.1-python3.10
+    restart: always
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:poni@host.docker.internal/f1
+      AIRFLOW__CORE__LOAD_EXAMPLES: False
+      AIRFLOW__WEBSERVER__DEFAULT_UI_TIMEZONE: utc
+      PYTHONPATH: /opt/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./include:/opt/airflow/include
+      - ./requirements.txt:/requirements.txt
+    ports:
+      - "9000:8080"
+    command: bash -c "pip install -r /requirements.txt && airflow webserver"
+
+
+  airflow-scheduler:
+    image: apache/airflow:2.8.1-python3.10
+    restart: always
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:poni@host.docker.internal/f1
+      AIRFLOW__CORE__LOAD_EXAMPLES: False
+      AIRFLOW__WEBSERVER__DEFAULT_UI_TIMEZONE: utc
+      PYTHONPATH: /opt/airflow
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./include:/opt/airflow/include
+      - ./requirements.txt:/requirements.txt
+    command: bash -c "pip install -r /requirements.txt && airflow scheduler"
+
+

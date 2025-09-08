@@ -1,0 +1,13 @@
+f1_analytics:
+  target: dev
+  outputs:
+      dev:
+        type: postgres
+        threads: 4
+        host: localhost
+        port: 5432
+        user: postgres
+        password: "poni"
+        dbname: f1
+        schema: f1_data
+
